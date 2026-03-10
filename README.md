@@ -18,3 +18,46 @@ Before beginning to look at the dataset in an analytical way, the dataset needed
 
 
 # **Exploratory Data Analysis**
+
+
+
+
+
+
+
+# **Assessment of Missingness**
+
+**MNAR Analysis**
+
+We believe the `description` column is MNAR. Recipes without descriptions are likely ones where the contributor did not feel the recipe needed explanation, meaning the missingness depends on the recipe itself (such as very simple recipes), not on any observed column. We assess the missingness of the `rating` column in the merged dataset, which contains 15,036 missing values out of 234,429 rows. We test whether this missingness depends on two other columns: `minutes` and `n_ingredients`.
+
+**Missingness Dependency**
+
+We assess the missingness of the `rating` column in the merged dataset, which contains 15,036 missing values out of 234,429 rows. We test whether this missingness depends on 
+two other columns: `minutes` and `n_ingredients`.
+
+- **Null Hypothesis:** The missingness of `rating` does not depend on `minutes`.
+- **Alternative Hypothesis:** The missingness of `rating` does depend on `minutes`.
+- **Test Statistic:** Difference in mean `minutes` between recipes with and without missing ratings.
+- **Significance Level:** 0.05
+- **Observed Difference:** 51.45 minutes
+- **P-value:** 0.124
+
+#insert plotly graph here
+
+Since the p-value (0.124) is greater than 0.05, we fail to reject the null hypothesis. The missingness of `rating` does **not** depend on `minutes`.
+
+
+- **Null Hypothesis:** The missingness of `rating` does not depend on `n_ingredients`.
+- **Alternative Hypothesis:** The missingness of `rating` does depend on `n_ingredients`.
+- **Test Statistic:** Difference in mean `n_ingredients` between recipes with and without missing ratings.
+- **Significance Level:** 0.05
+- **Observed Difference:** 0.1607
+- **P-value:** 0.0
+
+
+#insert plotly graph here
+
+Since the p-value (0.0) is less than 0.05, we reject the null hypothesis. The missingness of `rating` does depend on `n_ingredients`. Recipes with missing ratings tend to have 
+slightly fewer ingredients on average.
+
