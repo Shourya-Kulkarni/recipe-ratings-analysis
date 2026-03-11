@@ -20,9 +20,31 @@ Before beginning to look at the dataset in an analytical way, the dataset needed
 
 ![Screenshot](screenshot.png)
 
-**Univariate Analysis** insert plotly 
-**Bivariate Analysis** insert plotly 
-**Pivot table** insert plot 
+**Univariate Analysis**
+<iframe
+  src="univariate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+**Bivariate Analysis**
+<iframe
+  src="bivariate.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+
+**Pivot table**
+<iframe
+  src="heatmap.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 
 
