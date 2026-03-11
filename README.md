@@ -22,7 +22,7 @@ Before beginning to look at the dataset in an analytical way, the dataset needed
 
 **Univariate Analysis**
 <iframe
-  src="univariate.html"
+  src="assets/univariate.html"
   width="800"
   height="600"
   frameborder="0"
