@@ -31,7 +31,7 @@ Before beginning to look at the dataset in an analytical way, the dataset needed
 
 **Bivariate Analysis**
 <iframe
-  src="bivariate.html"
+  src="assets/bivariate.html"
   width="800"
   height="600"
   frameborder="0"
@@ -40,7 +40,7 @@ Before beginning to look at the dataset in an analytical way, the dataset needed
 
 **Pivot table**
 <iframe
-  src="heatmap.html"
+  src="assets/pivotheatmap.html"
   width="800"
   height="600"
   frameborder="0"
