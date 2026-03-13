@@ -40,6 +40,9 @@ The second univariate plot looks at the distribution of prep time with the major
   frameborder="0"
 ></iframe>
 
+The boxplot above looks at the average rating distribution based on the number of ingredients. The median rating hovers around 5 which means that regardless of the number of ingredients, the recipes have high ratings. 
+
+Based on the scatterplot, which looks at the correlation between number of ingredients vs. average rating. There is not a strong relationship between the two variables. There is a slight upward trend when there are more ingredients. 
 
 **Pivot table**
 <iframe
@@ -49,9 +52,7 @@ The second univariate plot looks at the distribution of prep time with the major
   frameborder="0"
 ></iframe>
 
-
-
-
+The heatmap created from pivot table shows the average rating by ingredients and steps. The average ratings were high regardless of the amount of ingredients and/or number of steps. The recipes with 21+ ingredients show highest ratings, especially when the number and complexity of steps decreased. 
 
 # **Assessment of Missingness**
 
