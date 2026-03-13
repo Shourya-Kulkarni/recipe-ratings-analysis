@@ -28,6 +28,9 @@ Before beginning to look at the dataset in an analytical way, the dataset needed
   frameborder="0"
 ></iframe>
 
+The first univariate plot looked specifically at the distribution of average ratings. Based on this plot, most of the recipes were rated highly with most of the recipes clustered between four and five. With few low ratings, there is a left-skewed distribution. 
+
+The second univariate plot looks at the distribution of prep time with the majority of the times between 10 and 40 minutes. This suggests that most of the recipes don't take too long to prepare. The plot has a right-skew as there are fewer recipes with long preparation times. 
 
 **Bivariate Analysis**
 <iframe
