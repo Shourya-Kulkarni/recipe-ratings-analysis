@@ -90,3 +90,40 @@ Since the p-value (0.124) is greater than 0.05, we fail to reject the null hypot
 Since the p-value (0.0) is less than 0.05, we reject the null hypothesis. The missingness of `rating` does depend on `n_ingredients`. Recipes with missing ratings tend to have 
 slightly fewer ingredients on average.
 
+
+# **Final model** 
+
+The improvements made to the baseline model from the step before can be summarized into three points. Algorthim change from linear regression to random forest regressor. Preprocessing, columntransformer was used to apply specific functions to specific columns rather than have a one size fits all framework. Lastly optimization, gridsearchCV was used to find the best complexity for the model. 
+
+Diving deeper, we improved our baseline model by introducing two feature transformations in order to represent the data generating process in a better way. Firstly the QuantileTranformer was used on the minutes variable. Looking at the raw data, we saw that the cooking times were skewed in an extreme way; some recipes taking 10,0000 minutes while others taking 30 minutes. Instead of using a linear model which would be affected greatly by outliers, we used the QuantileTranformer. Using this, we were able to map the distribution into a normal bell-shaped curve. The reason this is beneficial is that is allows our model to distinguish between differences in short time recipes like 15 minutes and 45 minutes as well as long time recipes like 8 hours and 4 hours with the same weight. Instead of focusing specifically on the minutes, the model now focuses on the relative rank for the effort instead of the actual number of minutes. 
+
+Secondly, we used Binarizer on n_steps. Adding n_steps and applying the binarizer, using a threshold from 10, allows the model to understand the number of steps in a recipe in a more "human" way. The binarizer allowed for a complexity flag to be made. This then ensured that the model was able to catch the idea that people might be more inclined to rate a complex recipe harshly if it did not turn out correct. 
+
+Transitioning to a random forest regressor allows our model to assume that the different variables and features interact instead of a fixed or stagnant amount of change which would happen with a linear regression. Random forest uses decision trees in order to decipher the non-linear interactions. Choosing the hyperparameters used for the model was done by GridSearchCV with 3-fold-cross-validation. Using this method, every combination of hyperparameters were evaluated and then the one with the lowest average error was chosen. We specifically did this to ensure that the model could handle future data. The best hyperparameters for this model were identified as max_depth of 10 and N-estimators of 100. This means that the model was able to catch enough complexity at depth of 10 without an overfitting error. 
+
+Comparing the baseline model to this improved model, we see improvements with a lower test RMSE and a reduced residual bias. The RMSE was lower due to the better predictions from the random forest regressor and the residual bias was reduced due to the transformation of the minutes. 
+
+
+# **Fairness Analysis**
+
+- **Group X(simple):**  recipes with five or fewer steps 
+- **Group Y(Complex):** recipes with more than five steps 
+- **Evaluation metric:** RMSE, this was chosen as it is the most appropriate metric for our model as it judges large errrors in precition ratings to ensure the model understands more difficult recipes.
+- **Test Statistic:** the difference in RMSE, group y RMSE - group X RMSE
+- **Significance level:** 0.05
+
+- **Null Hypothesis:** Our model is fair. The RMSE for the simple recipes and the complex recipes are the same, any observed difference is due to random change and sampling noise. 
+- **Alternative Hypothesis:** Our model is unfair. The RMSE for complex recipes is higher than the RMSE for simple recipes. This suggests that the model has issues when predicting ratings for complex recipes.
+
+- **Results:** The calculated p-value from this analysis was 0.412 which is larger than the significance level of 0.05. This means that we fail to reject the null hypothesis.
+
+In conclusion, there is no statisitically signifcant evidence that suggests that the model has issues performing on complex reciples versus simple recipes. This suggests that the feature engineering done to improve the model encouraged generalization across levels of recipe complexity. 
+
+
+
+
+
+
+
+
+
