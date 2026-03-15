@@ -163,7 +163,7 @@ worse than one that is 0.5 stars off.
 **Features known at time of prediction:** We only use features that exist before any ratings are submitted such as `n_ingredients`, `minutes`, and `n_steps`. These are all properties of the recipe itself that are known at the time the recipe is posted on Food.com. We do not use any columns calculated from ratings such as `avg_rating` itself since those would not be available before a recipe receives 
 any ratings.
 
-# **Baseline Model**
+# Baseline Model
 
 **Model:** Linear Regression in a sklearn Pipeline
 
