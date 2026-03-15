@@ -132,6 +132,7 @@ We chose a significance level of 0.05, which is the standard threshold in statis
 
 
 **Observed difference:** -0.0040
+
 **P-value:** 0.8220
 
 
