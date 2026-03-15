@@ -91,6 +91,58 @@ Since the p-value (0.0) is less than 0.05, we reject the null hypothesis. The mi
 slightly fewer ingredients on average.
 
 
+## Hypothesis Testing
+
+**Question:** Do recipes with more ingredients receive higher average ratings than recipes with fewer ingredients?
+
+**Null Hypothesis:** Recipes with more ingredients have the same or lower average rating than recipes with fewer ingredients.
+
+**Alternative Hypothesis:** Recipes with more ingredients have higher average ratings than recipes with fewer ingredients.
+
+**Test Statistic:** Difference in mean avg_rating between recipes above and below the median number of ingredients (9).
+
+**Significance Level:** 0.05
+
+- Observed difference: -0.0040
+- P-value: 0.8220
+
+**Conclusion:** Since the p-value (0.8220) is much greater than 0.05, we fail to reject the null hypothesis. There is no significant evidence that recipes with more ingredients receive higher average ratings. We cannot conclude the null hypothesis is true, it is only that we do not have sufficient evidence to reject it.
+
+**Justification:** We chose a permutation test because we do not have information about any population distribution. We use a one-tailed test since our alternative hypothesis is directional.
+
+<iframe src="assets/hypothesis_test.html" width="800" height="600" frameborder="0"></iframe>
+
+## Framing a Prediction Problem
+
+**Prediction Problem:** Predict the average rating (`avg_rating`) of a recipe.
+
+**Type:** Regression
+
+**Response Variable:** `avg_rating`. We chose this because our entire project investigates what factors influence recipe ratings, and predicting 
+the rating directly answers our research question.
+
+**Evaluation Metric:** RMSE (Root Mean Squared Error). We chose RMSE because it is in the same units as our response variable (rating points), 
+making it easy to interpret. A lower RMSE means our predictions are closer to the actual ratings.
+
+**Features known at time of prediction:** We only use features that exist before any ratings are submitted, such as `n_ingredients`, `minutes`, and `n_steps`. We do not use any columns calculated from ratings since those would not be available before a recipe is rated.
+
+## Baseline Model
+
+**Model:** Linear Regression in a sklearn Pipeline
+
+**Features:**
+- `n_ingredients` (quantitative) : Number of ingredients
+- `minutes` (quantitative) : Cooking time in minutes
+
+Both features are quantitative so no encoding was needed. We applied `StandardScaler` to standardize both columns to the same scale.
+
+**Performance:**
+- Train RMSE: 0.6420
+- Test RMSE: 0.6359
+
+The train and test RMSE are very close, meaning the model is not overfitting. However, an RMSE of around 0.64 on a 1-5 rating scale is not ideal. The predictions are off by about 0.64 stars on average. We believe this model can be improved by adding more meaningful features in the final model.
+
+
 # **Final model** 
 
 The improvements made to the baseline model from the step before can be summarized into three points. Algorthim change from linear regression to random forest regressor. Preprocessing, columntransformer was used to apply specific functions to specific columns rather than have a one size fits all framework. Lastly optimization, gridsearchCV was used to find the best complexity for the model. 
