@@ -33,12 +33,9 @@ The first univariate plot looked specifically at the distribution of average rat
 The second univariate plot looks at the distribution of prep time with the majority of the times between 10 and 40 minutes. This suggests that most of the recipes don't take too long to prepare. The plot has a right-skew as there are fewer recipes with long preparation times. 
 
 **Bivariate Analysis**
-<iframe
-  src="assets/bivariate.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
+<iframe src="assets/bivariate_box.html" width="800" height="600" frameborder="0"></iframe>
+
+<iframe src="assets/bivariate_scatter.html" width="800" height="600" frameborder="0"></iframe>
 
 The boxplot above looks at the average rating distribution based on the number of ingredients. The median rating hovers around 5 which means that regardless of the number of ingredients, the recipes have high ratings. 
 
