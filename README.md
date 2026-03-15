@@ -148,7 +148,9 @@ We chose a significance level of 0.05, which is the standard threshold in statis
 
 **Type:** Regression
 
-**Response Variable:** `avg_rating` — we chose this because our entire project investigates what factors influence recipe ratings. Throughout steps 1-4, we explored how recipe characteristics like number of 
+**Response Variable:** `avg_rating` 
+
+We chose this because our entire project investigates what factors influence recipe ratings. Throughout steps 1-4, we explored how recipe characteristics like number of 
 ingredients and cooking time relate to ratings. Predicting `avg_rating` directly answers our overarching research question: "What types of recipes tend to have higher average ratings?"
 
 **Evaluation Metric:** RMSE (Root Mean Squared Error). We chose RMSE because it is in the same units as our response variable (rating points on a 1-5 scale), making it easy to interpret. For example, an RMSE of 
