@@ -9,7 +9,7 @@ The recipes and ratings dataset holds recipes and ratings from food.com. The dat
 
 The importance of the dataset as well as the question being answered is based on the consumer process. It is important to know whether a recipe was rated highly if it contains expensive ingredients and could more ingredients signal a longer prep or cook time which means more time away from work, family, or friends. 
 
-In the raw recipes dataset, there are 83,782 rows and 12 columns. The interactions dataset contains 721,927 rows and 5 columns. For the raw recipes, the main columns that are important to our analysis are the `name`, `minutes`, `n_steps`, and `description`. These columns indicate the recipe name, recipe ID, the number of minutes to prepare the recipe, the number of steps in the recipe, and the user-provided description. In the interactions dataset, the most important columns are the recipe ID, rating, and review columns. 
+In the raw recipes dataset, there are 83,782 rows and 12 columns. The interactions dataset contains 721,927 rows and 5 columns. For the raw recipes, the main columns that are important to our analysis are the `n_ingredients`,`name`, `minutes`, `n_steps`, and `description`. These columns indicate the recipe name, recipe ID, the number of minutes to prepare the recipe, the number of steps in the recipe, and the user-provided description. In the interactions dataset, the most important columns are the recipe ID, rating, and review columns. 
 
 The two datasets were merged together during the data cleaning process and the final dataset contained 83,782 rows and 13 columns. The new column being the average rating. 
 
@@ -69,12 +69,12 @@ The heatmap created from pivot table shows the average rating by ingredients and
 
 **MNAR Analysis**
 
-We believe the `description` column is MNAR. Recipes without descriptions are likely ones where the contributor did not feel the recipe needed explanation, meaning the missingness depends on the recipe itself (such as very simple recipes), not on any observed column. We assess the missingness of the `rating` column in the merged dataset, which contains 15,036 missing values out of 234,429 rows. We test whether this missingness depends on two other columns: `minutes` and `n_ingredients`.
+We believe the `description` column is MNAR. Recipes without descriptions are likely ones where the contributor did not feel the recipe needed explanation, meaning the missingness depends on the recipe itself (such as very simple recipes), not on any observed column. The missingness of `description` depends on the actual content that would have been written. Simple recipes are less likely to have descriptions, which is the definition 
+of MNAR. To confirm this, we would want additional data such as the complexity score or category of each recipe, which could help explain why some recipes are missing descriptions and thereby make the missingness MAR.
 
 **Missingness Dependency**
 
-We assess the missingness of the `rating` column in the merged dataset, which contains 15,036 missing values out of 234,429 rows. We test whether this missingness depends on 
-two other columns: `minutes` and `n_ingredients`.
+We assess the missingness of the `rating` column in the merged dataset, which contains 15,036 missing values out of 234,429 rows. We test whether this missingness depends on two other columns: `minutes` and `n_ingredients`.
 
 Missingness of `rating` VS. `minutes` :
 
@@ -104,6 +104,8 @@ Missingness of `rating` VS. `n_ingredients`:
 
 Since the p-value (0.0) is less than 0.05, we reject the null hypothesis. The missingness of `rating` does depend on `n_ingredients`. Recipes with missing ratings tend to have 
 slightly fewer ingredients on average.
+
+Overall, these results suggest that simpler recipes with fewer ingredients are less likely to receive ratings, which means our dataset may be slightly biased towards more complex recipes. This is relevant to our research question since it suggests the ratings we analyze may not fully represent all types of recipes.
 
 
 # Hypothesis Testing
