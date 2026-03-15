@@ -14,6 +14,7 @@ In the raw recipes dataset, there are 83,782 rows and 12 columns. The interactio
 The two datasets were merged together during the data cleaning process and the final dataset contained 83,782 rows and 13 columns. The new column being the average rating. 
 
  # **Data Cleaning and Exploratory Data Analysis** 
+ 
 Before beginning to look at the dataset in an analytical way, the dataset needed to be cleaned. Specifically it was important to merge the two datasets; raw recipes and interactions together to prodcue one workable dataset. After merging, a column needed to be added to find the average rating for the recipes from the interactions dataset. This was done by first fill all ratings of 0 with np.nan. The main reason for this is because it is the first step in distinguishing between an actual rating of 0 and a missing rating value. This also allows us to prevent skew when averaging it as 0s do affect the average.
 
 **Head of Dataset**
@@ -33,7 +34,9 @@ The first univariate plot looked specifically at the distribution of average rat
 The second univariate plot looks at the distribution of prep time with the majority of the times between 10 and 40 minutes. This suggests that most of the recipes don't take too long to prepare. The plot has a right-skew as there are fewer recipes with long preparation times. 
 
 **Bivariate Analysis**
+
 <iframe src="assets/bivariate_box.html" width="800" height="600" frameborder="0"></iframe>
+
 
 <iframe src="assets/bivariate_scatter.html" width="800" height="600" frameborder="0"></iframe>
 
@@ -62,6 +65,8 @@ We believe the `description` column is MNAR. Recipes without descriptions are li
 We assess the missingness of the `rating` column in the merged dataset, which contains 15,036 missing values out of 234,429 rows. We test whether this missingness depends on 
 two other columns: `minutes` and `n_ingredients`.
 
+** Missingness of `rating` VS. `minutes` **
+
 - **Null Hypothesis:** The missingness of `rating` does not depend on `minutes`.
 - **Alternative Hypothesis:** The missingness of `rating` does depend on `minutes`.
 - **Test Statistic:** Difference in mean `minutes` between recipes with and without missing ratings.
@@ -73,6 +78,8 @@ two other columns: `minutes` and `n_ingredients`.
 
 Since the p-value (0.124) is greater than 0.05, we fail to reject the null hypothesis. The missingness of `rating` does **not** depend on `minutes`.
 
+
+** Missingness of `rating` VS. `n_ingredients` **
 
 - **Null Hypothesis:** The missingness of `rating` does not depend on `n_ingredients`.
 - **Alternative Hypothesis:** The missingness of `rating` does depend on `n_ingredients`.
@@ -88,7 +95,7 @@ Since the p-value (0.0) is less than 0.05, we reject the null hypothesis. The mi
 slightly fewer ingredients on average.
 
 
-## Hypothesis Testing
+# **Hypothesis Testing**
 
 **Question:** Do recipes with more ingredients receive higher average ratings than recipes with fewer ingredients?
 
@@ -103,13 +110,16 @@ slightly fewer ingredients on average.
 - Observed difference: -0.0040
 - P-value: 0.8220
 
+
+<iframe src="assets/hypothesis_test.html" width="800" height="600" frameborder="0"></iframe>
+
+
 **Conclusion:** Since the p-value (0.8220) is much greater than 0.05, we fail to reject the null hypothesis. There is no significant evidence that recipes with more ingredients receive higher average ratings. We cannot conclude the null hypothesis is true, it is only that we do not have sufficient evidence to reject it.
 
 **Justification:** We chose a permutation test because we do not have information about any population distribution. We use a one-tailed test since our alternative hypothesis is directional.
 
-<iframe src="assets/hypothesis_test.html" width="800" height="600" frameborder="0"></iframe>
 
-## Framing a Prediction Problem
+# **Framing a Prediction Problem**
 
 **Prediction Problem:** Predict the average rating (`avg_rating`) of a recipe.
 
@@ -123,7 +133,7 @@ making it easy to interpret. A lower RMSE means our predictions are closer to th
 
 **Features known at time of prediction:** We only use features that exist before any ratings are submitted, such as `n_ingredients`, `minutes`, and `n_steps`. We do not use any columns calculated from ratings since those would not be available before a recipe is rated.
 
-## Baseline Model
+# **Baseline Model**
 
 **Model:** Linear Regression in a sklearn Pipeline
 
