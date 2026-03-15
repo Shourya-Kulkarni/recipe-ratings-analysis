@@ -1,10 +1,10 @@
-# Recipe Ratings Analysis
+# **Recipe Ratings Analysis**
 ### By Anna Rosenbaum and Shourya Kulkarni
 
 This project investigates recipes and ratings from Food.com to answer: 
 **Do recipes with more ingredients receive higher average ratings?**
 
-# **Introduction:** 
+# Introduction:
 The recipes and ratings dataset holds recipes and ratings from food.com. The data was originally scraped and used for other data analysis. There are two CSVs in the dataset, one that contains the recipes and the other contains the reviews and ratings submitted for the recipes. The overarching question we are hoping to answer is, What types of recipes tend to have higher average ratings? More specifically, we are looking to answer; Do recipes with more ingredients recieve higher average ratings than recipes with fewer ingredients. 
 
 The importance of the dataset as well as the question being answered is based on the consumer process. It is important to know whether a recipe was rated highly if it contains expensive ingredients and could more ingredients signal a longer prep or cook time which means more time away from work, family, or friends. 
@@ -13,7 +13,7 @@ In the raw recipes dataset, there are 83,782 rows and 12 columns. The interactio
 
 The two datasets were merged together during the data cleaning process and the final dataset contained 83,782 rows and 13 columns. The new column being the average rating. 
 
-# **Data Cleaning and Exploratory Data Analysis** 
+# Data Cleaning and Exploratory Data Analysis
  
 Before beginning to look at the dataset in an analytical way, the dataset needed to be cleaned. Specifically it was important to merge the two datasets; raw recipes and interactions together to prodcue one workable dataset. After merging, a column needed to be added to find the average rating for the recipes from the interactions dataset. This was done by first fill all ratings of 0 with np.nan. The main reason for this is because it is the first step in distinguishing between an actual rating of 0 and a missing rating value. This also allows us to prevent skew when averaging it as 0s do affect the average.
 
@@ -65,7 +65,7 @@ Based on the scatterplot, which looks at the correlation between number of ingre
 
 The heatmap created from pivot table shows the average rating by ingredients and steps. The average ratings were high regardless of the amount of ingredients and/or number of steps. The recipes with 21+ ingredients show highest ratings, especially when the number and complexity of steps decreased. 
 
-# **Assessment of Missingness**
+# Assessment of Missingness
 
 **MNAR Analysis**
 
@@ -106,7 +106,7 @@ Since the p-value (0.0) is less than 0.05, we reject the null hypothesis. The mi
 slightly fewer ingredients on average.
 
 
-# **Hypothesis Testing**
+# Hypothesis Testing
 
 **Question:** Do recipes with more ingredients receive higher average ratings than recipes with fewer ingredients?
 
@@ -130,7 +130,7 @@ slightly fewer ingredients on average.
 **Conclusion:** Since the p-value (0.8220) is much greater than 0.05, we fail to reject the null hypothesis. There is no significant evidence that recipes with more ingredients receive higher average ratings. We cannot conclude the null hypothesis is true, it is only that we do not have sufficient evidence to reject it.
 
 
-# **Framing a Prediction Problem**
+# Framing a Prediction Problem
 
 **Prediction Problem:** Predict the average rating (`avg_rating`) of a recipe.
 
@@ -161,7 +161,7 @@ Both features are quantitative so no encoding was needed. We applied `StandardSc
 The train and test RMSE are very close, meaning the model is not overfitting. However, an RMSE of around 0.64 on a 1-5 rating scale is not ideal. The predictions are off by about 0.64 stars on average. We believe this model can be improved by adding more meaningful features in the final model.
 
 
-# **Final model** 
+# Final model 
 
 The improvements made to the baseline model can be summarized into three points: 
 
@@ -178,12 +178,12 @@ Transitioning to a `RandomForestRegressor` allows our model to assume that the d
 Comparing the baseline model to this improved model, we see improvements with a lower test RMSE and a reduced residual bias. The RMSE was lower due to the better predictions from the `RandomForestRegressor` and the residual bias was reduced due to the transformation of minutes.
 
 
-# **Fairness Analysis**
+# Fairness Analysis
 
-- **Group X(simple):**  recipes with five or fewer steps 
-- **Group Y(Complex):** recipes with more than five steps 
+- **Group X (Simple):**  Recipes with five or fewer steps 
+- **Group Y (Complex):** Recipes with more than five steps 
 - **Evaluation metric:** RMSE, this was chosen as it is the most appropriate metric for our model as it judges large errrors in precition ratings to ensure the model understands more difficult recipes.
-- **Test Statistic:** the difference in RMSE, (Group Y RMSE - Group X RMSE)
+- **Test Statistic:** The difference in RMSE, (Group Y RMSE - Group X RMSE)
 - **Significance level:** 0.05
 
 - **Null Hypothesis:** Our model is fair. The RMSE for the simple recipes and the complex recipes are the same, any observed difference is due to random change and sampling noise. 
