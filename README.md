@@ -148,13 +148,16 @@ We chose a significance level of 0.05, which is the standard threshold in statis
 
 **Type:** Regression
 
-**Response Variable:** `avg_rating`. We chose this because our entire project investigates what factors influence recipe ratings, and predicting 
-the rating directly answers our research question.
+**Response Variable:** `avg_rating` — we chose this because our entire project investigates what factors influence recipe ratings. Throughout steps 1-4, we explored how recipe characteristics like number of 
+ingredients and cooking time relate to ratings. Predicting `avg_rating` directly answers our overarching research question: "What types of recipes tend to have higher average ratings?"
 
-**Evaluation Metric:** RMSE (Root Mean Squared Error). We chose RMSE because it is in the same units as our response variable (rating points), 
-making it easy to interpret. A lower RMSE means our predictions are closer to the actual ratings.
+**Evaluation Metric:** RMSE (Root Mean Squared Error). We chose RMSE because it is in the same units as our response variable (rating points on a 1-5 scale), making it easy to interpret. For example, an RMSE of 
+0.5 means our predictions are off by half a star on average. We chose RMSE over R² because R² only tells us the proportion of variance explained but does not tell us how far off our predictions are in 
+actual rating points, which is more meaningful for our problem. We chose RMSE over MAE because RMSE penalizes larger errors more heavily, which is important since a prediction that is 2 stars off is much 
+worse than one that is 0.5 stars off.
 
-**Features known at time of prediction:** We only use features that exist before any ratings are submitted, such as `n_ingredients`, `minutes`, and `n_steps`. We do not use any columns calculated from ratings since those would not be available before a recipe is rated.
+**Features known at time of prediction:** We only use features that exist before any ratings are submitted such as `n_ingredients`, `minutes`, and `n_steps`. These are all properties of the recipe itself that are known at the time the recipe is posted on Food.com. We do not use any columns calculated from ratings such as `avg_rating` itself since those would not be available before a recipe receives 
+any ratings.
 
 # **Baseline Model**
 
@@ -164,7 +167,11 @@ making it easy to interpret. A lower RMSE means our predictions are closer to th
 - `n_ingredients` (quantitative) : Number of ingredients
 - `minutes` (quantitative) : Cooking time in minutes
 
-Both features are quantitative so no encoding was needed. We applied `StandardScaler` to standardize both columns to the same scale.
+We chose these two features as our baseline because they are both simple, directly observable properties of a recipe that exist before any ratings are submitted. From our EDA in Step 2, we saw that recipes 
+with different numbers of ingredients and cooking times had varying average ratings, suggesting these features might have some predictive power.
+
+Both features are quantitative, so no categorical encoding was needed. We applied `StandardScaler` to both columns to standardize them to the same scale, since `minutes` has much larger 
+raw values than `n_ingredients`. Without scaling, the linear regression model would give disproportionate weight to `minutes` simply because of its larger magnitude.
 
 **Performance:**
 - Train RMSE: 0.6420
