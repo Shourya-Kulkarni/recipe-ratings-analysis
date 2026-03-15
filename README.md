@@ -45,6 +45,17 @@ The boxplot above looks at the average rating distribution based on the number o
 Based on the scatterplot, which looks at the correlation between number of ingredients vs. average rating. There is not a strong relationship between the two variables. There is a slight upward trend when there are more ingredients. 
 
 **Pivot table**
+
+| ingredient_group   |   Quick |   Medium |   In-depth |   Complex |
+|:-------------------|--------:|---------:|-----------:|----------:|
+| 1-5                | 4.66479 |  4.63466 |    4.61589 |   4.64892 |
+| 6-10               | 4.62164 |  4.61032 |    4.61045 |   4.64575 |
+| 11-15              | 4.61855 |  4.61532 |    4.61692 |   4.6435  |
+| 16-20              | 4.68033 |  4.62764 |    4.65885 |   4.61812 |
+| 21+                | 4.94559 |  4.7183  |    4.73002 |   4.67875 |
+
+**Heat Map of Pivot table**
+
 <iframe
   src="assets/pivotheatmap.html"
   width="800"
@@ -172,7 +183,7 @@ Comparing the baseline model to this improved model, we see improvements with a 
 - **Group X(simple):**  recipes with five or fewer steps 
 - **Group Y(Complex):** recipes with more than five steps 
 - **Evaluation metric:** RMSE, this was chosen as it is the most appropriate metric for our model as it judges large errrors in precition ratings to ensure the model understands more difficult recipes.
-- **Test Statistic:** the difference in RMSE, group y RMSE - group X RMSE
+- **Test Statistic:** the difference in RMSE, (Group Y RMSE - Group X RMSE)
 - **Significance level:** 0.05
 
 - **Null Hypothesis:** Our model is fair. The RMSE for the simple recipes and the complex recipes are the same, any observed difference is due to random change and sampling noise. 
