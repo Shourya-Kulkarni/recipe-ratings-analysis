@@ -13,7 +13,7 @@ In the raw recipes dataset, there are 83,782 rows and 12 columns. The interactio
 
 The two datasets were merged together during the data cleaning process and the final dataset contained 83,782 rows and 13 columns. The new column being the average rating. 
 
- **Data Cleaning and Exploratory Data Analysis** 
+**Data Cleaning and Exploratory Data Analysis** 
  
 Before beginning to look at the dataset in an analytical way, the dataset needed to be cleaned. Specifically it was important to merge the two datasets; raw recipes and interactions together to prodcue one workable dataset. After merging, a column needed to be added to find the average rating for the recipes from the interactions dataset. This was done by first fill all ratings of 0 with np.nan. The main reason for this is because it is the first step in distinguishing between an actual rating of 0 and a missing rating value. This also allows us to prevent skew when averaging it as 0s do affect the average.
 
