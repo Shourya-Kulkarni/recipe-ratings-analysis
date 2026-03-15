@@ -72,7 +72,7 @@ two other columns: `minutes` and `n_ingredients`.
 - **Observed Difference:** 51.45 minutes
 - **P-value:** 0.124
 
-#insert plotly graph here
+<iframe src="assets/missingness_minutes.html" width="800" height="600" frameborder="0"></iframe>
 
 Since the p-value (0.124) is greater than 0.05, we fail to reject the null hypothesis. The missingness of `rating` does **not** depend on `minutes`.
 
@@ -85,7 +85,7 @@ Since the p-value (0.124) is greater than 0.05, we fail to reject the null hypot
 - **P-value:** 0.0
 
 
-#insert plotly graph here
+<iframe src="assets/missingness_ingredients.html" width="800" height="600" frameborder="0"></iframe>
 
 Since the p-value (0.0) is less than 0.05, we reject the null hypothesis. The missingness of `rating` does depend on `n_ingredients`. Recipes with missing ratings tend to have 
 slightly fewer ingredients on average.
