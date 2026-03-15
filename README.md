@@ -9,7 +9,7 @@ The recipes and ratings dataset holds recipes and ratings from food.com. The dat
 
 The importance of the dataset as well as the question being answered is based on the consumer process. It is important to know whether a recipe was rated highly if it contains expensive ingredients and could more ingredients signal a longer prep or cook time which means more time away from work, family, or friends. 
 
-In the raw recipes dataset, there are 83,782 rows and 12 columns. The interactions dataset contains 721,927 rows and 5 columns. For the raw recipes, the main columns that are important to our analysis are the name, minutes, n_steps, and description. These columns indicate the recipe name, recipe ID, the number of minutes to prepare the recipe, the number of steps in the recipe, and the user-provided description. In the interactions dataset, the most important columns are the recipe ID, rating, and review columns. 
+In the raw recipes dataset, there are 83,782 rows and 12 columns. The interactions dataset contains 721,927 rows and 5 columns. For the raw recipes, the main columns that are important to our analysis are the `name`, `minutes`, `n_steps`, and `description`. These columns indicate the recipe name, recipe ID, the number of minutes to prepare the recipe, the number of steps in the recipe, and the user-provided description. In the interactions dataset, the most important columns are the recipe ID, rating, and review columns. 
 
 The two datasets were merged together during the data cleaning process and the final dataset contained 83,782 rows and 13 columns. The new column being the average rating. 
 
@@ -114,20 +114,31 @@ slightly fewer ingredients on average.
 
 **Alternative Hypothesis:** Recipes with more ingredients have higher average ratings than recipes with fewer ingredients.
 
-**Justification:** We chose a permutation test because we do not have information about any population distribution. We use a one-tailed test since our alternative hypothesis is directional.
-
 **Test Statistic:** Difference in mean avg_rating between recipes above and below the median number of ingredients (9).
 
 **Significance Level:** 0.05
 
-- Observed difference: -0.0040
-- P-value: 0.8220
+**Justification:** We chose a permutation test because we do not have information about any population distribution. We simply want to check if the two groups (recipes with more ingredients vs. fewer ingredients) 
+look like they come from the same population. A permutation test is appropriate here because we are comparing two observed groups from the same dataset rather than testing against a known distribution.
+
+We chose the difference in means as our test statistic because our hypothesis is directional. We specifically want to know if recipes with more ingredients rate *higher*, not just *differently*. The 
+difference in means directly captures this directional relationship.
+
+We use a one-tailed test since our alternative hypothesis is one-directional (more ingredients = higher ratings). A two-tailed test would be inappropriate here because we are not interested in 
+whether more ingredients could also lead to *lower* ratings.
+
+We chose a significance level of 0.05, which is the standard threshold in statistical testing, meaning we require strong enough evidence before rejecting the null hypothesis.
+
+
+
+**Observed difference:** -0.0040
+**P-value:** 0.8220
 
 
 <iframe src="assets/hypothesis_test.html" width="800" height="600" frameborder="0"></iframe>
 
 
-**Conclusion:** Since the p-value (0.8220) is much greater than 0.05, we fail to reject the null hypothesis. There is no significant evidence that recipes with more ingredients receive higher average ratings. We cannot conclude the null hypothesis is true, it is only that we do not have sufficient evidence to reject it.
+**Conclusion:** Since the p-value (0.8220) is much greater than 0.05, **we fail to reject the null hypothesis**. There is no significant evidence that recipes with more ingredients receive higher average ratings. We cannot conclude the null hypothesis is true, it is only that we do not have sufficient evidence to reject it.
 
 
 # Framing a Prediction Problem
@@ -183,6 +194,7 @@ Comparing the baseline model to this improved model, we see improvements with a 
 - **Group X (Simple):**  Recipes with five or fewer steps 
 - **Group Y (Complex):** Recipes with more than five steps 
 - **Evaluation metric:** RMSE, this was chosen as it is the most appropriate metric for our model as it judges large errrors in precition ratings to ensure the model understands more difficult recipes.
+  
 - **Test Statistic:** The difference in RMSE, (Group Y RMSE - Group X RMSE)
 - **Significance level:** 0.05
 
